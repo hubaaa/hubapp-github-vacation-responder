@@ -1,5 +1,5 @@
 Package.describe({
-  name: 'easy-meteor-settings',
+  name: 'easy-service-config',
   version: '0.0.1',
   // Brief, one-line summary of the package.
   summary: '',
@@ -12,18 +12,17 @@ Package.describe({
 
 Package.onUse(function(api) {
   api.versionsFrom('1.1.0.2');
-
   api.use([
     'meteor',
     'underscore',
     'coffeescript',
+    'service-configuration',
     'practicalmeteor:loglevel',
     'practicalmeteor:chai',
-    'practicalmeteor:underscore-deep'
-  ]);
+    'easy-meteor-settings'
+  ], 'server');
 
-  api.addFiles('namespace.coffee');
-  api.addFiles('EasyMeteorSettings.coffee');
+  api.addFiles('EasyServiceConfig.coffee', 'server');
 });
 
 Package.onTest(function(api) {
@@ -33,10 +32,10 @@ Package.onTest(function(api) {
     'practicalmeteor:loglevel',
     'practicalmeteor:chai',
     'practicalmeteor:sinon'
-  ]);
+  ], 'server');
 
   api.use('tinytest');
-  api.use('easy-meteor-settings');
+  api.use('easy-service-config');
 
-  api.addFiles('EasyMeteorSettingsTest.coffee');
+  api.addFiles('EasyServiceConfigTest.coffee', 'server');
 });

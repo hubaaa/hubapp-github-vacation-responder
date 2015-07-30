@@ -16,7 +16,12 @@ ngrok authtoken xxx
 
 ```
 ngrok http -bind-tls=true -subdomain=ronen 3000
+ngrok http -bind-tls=true -subdomain=ronen -key $HOME/.ngrok2/ngrok.key -crt $HOME/.ngrok2/ngrok.crt 3000
+
+ngrok http -bind-tls=true -subdomain=ronen 3000
 ```
+
+docker run -d --name ngrokd --restart=always -p 4480:4480 -p 4444:4444 -p 4443:4443 sequenceiq/ngrokd -httpAddr=:4480 -httpsAddr=:4444 -domain=ngrok.lavaina.com
 
 Replace ronen with your dev env name.
 

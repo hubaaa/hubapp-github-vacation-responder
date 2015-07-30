@@ -14,29 +14,29 @@ Meteor.startup(function() {
   */
 
   // Add GitHub configuration entry
-  /*
+/*
   ServiceConfiguration.configurations.update(
     { service: "github" },
     { $set: {
-        clientId: "XXXXXXXXXXXXXXXXXXXX",
-        secret: "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
-      }
+        clientId: "XXX",
+        secret: "XXX"
+      } 
     },
     { upsert: true }
   );
-  */
+*/
 
   // Add Google configuration entry
-  ServiceConfiguration.configurations.update(
-    { service: "google" },
-    { $set: {
-        clientId: "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
-        client_email: "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
-        secret: "XXXXXXXXXXXXXXXXXXXXXXXX"
-      }
-    },
-    { upsert: true }
-  );
+  //ServiceConfiguration.configurations.update(
+  //  { service: "google" },
+  //  { $set: {
+  //      clientId: "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
+  //      client_email: "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
+  //      secret: "XXXXXXXXXXXXXXXXXXXXXXXX"
+  //    }
+  //  },
+  //  { upsert: true }
+  //);
 
   // Add Linkedin configuration entry
   /*

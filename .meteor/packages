@@ -13,4 +13,6 @@ twbs:bootstrap
 service-configuration
 zimme:iron-router-active
 less
-easy-service-configuration
+easy-meteor-settings
+easy-service-config
+accounts-ui
