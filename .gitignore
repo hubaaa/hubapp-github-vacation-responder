@@ -1,6 +1,8 @@
-# meteor
+# custom
+*.env
 settings.json
-
+curl.sh
+.idea
 
 # Logs
 logs

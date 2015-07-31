@@ -1,5 +1,5 @@
 Package.describe({
-  name: 'packaged-app',
+  name: 'json-pipes',
   version: '0.0.1',
   // Brief, one-line summary of the package.
   summary: '',
@@ -17,31 +17,25 @@ Package.onUse(function(api) {
     'meteor',
     'underscore',
     'coffeescript',
-    'http',
-    'mongo',
     'practicalmeteor:loglevel',
     'practicalmeteor:chai',
-    'easy-meteor-settings',
-    'bruz:github-api'
+    'easy-meteor-settings'
   ]);
 
-
-  api.addFiles('GitHubVacationResponder.coffee', 'server');
+  api.addFiles('JsonPipe.coffee');
 });
 
 Package.onTest(function(api) {
   api.use([
     'underscore',
     'coffeescript',
-    'http',
     'practicalmeteor:loglevel',
     'practicalmeteor:chai',
-    'bruz:github-api',
     'practicalmeteor:sinon',
     'practicalmeteor:mocha'
   ]);
 
-  api.use('packaged-app');
+  api.use('json-pipes');
 
-  api.addFiles('GitHubVacationResponderTest.coffee', 'server');
+  api.addFiles('JsonPipeTest.coffee');
 });

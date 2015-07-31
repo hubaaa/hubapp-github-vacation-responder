@@ -1,5 +1,5 @@
 Package.describe({
-  name: 'packaged-app',
+  name: 'endpoint-puller',
   version: '0.0.1',
   // Brief, one-line summary of the package.
   summary: '',
@@ -12,36 +12,31 @@ Package.describe({
 
 Package.onUse(function(api) {
   api.versionsFrom('1.1.0.2');
-
   api.use([
     'meteor',
     'underscore',
     'coffeescript',
     'http',
-    'mongo',
     'practicalmeteor:loglevel',
     'practicalmeteor:chai',
     'easy-meteor-settings',
-    'bruz:github-api'
-  ]);
+    'json-pipes'
+  ], 'server');
 
-
-  api.addFiles('GitHubVacationResponder.coffee', 'server');
+  api.addFiles('EndpointPuller.coffee', 'server');
 });
 
 Package.onTest(function(api) {
   api.use([
     'underscore',
     'coffeescript',
-    'http',
     'practicalmeteor:loglevel',
     'practicalmeteor:chai',
-    'bruz:github-api',
     'practicalmeteor:sinon',
     'practicalmeteor:mocha'
-  ]);
+  ], 'server');
 
-  api.use('packaged-app');
+  api.use('endpoint-puller', 'server');
 
-  api.addFiles('GitHubVacationResponderTest.coffee', 'server');
+  api.addFiles('EndpointPullerTest.coffee', 'server');
 });

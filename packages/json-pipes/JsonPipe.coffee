@@ -1,0 +1,66 @@
+log = new ObjectLogger('hubaaa.JsonPipe', 'info')
+
+class hubaaa.JsonPipe
+
+  ###
+  @param @options:
+    filter:
+      An optional filtering function that returns:
+      false if doc should be dropped
+      true if doc should be passed along the pipe
+      undefined if it doesn't care about this specific doc
+      Once we support multiple filters, if at least one filter returns false, doc will be dropped.
+      Otherwise, at least one filter needs to return true for doc to pass
+    transform:
+      An optional transform function that returns the transformed document
+    output:
+      An optional output handler that received the "end product"
+    outputCollection:
+      An optional collection where to save the transformed / extended output in.
+      Can be an existing Mongo.Collection or the name of the Mongo.Collection to create.
+  @todo:
+    1. Support filterCollection (as basis for data caching too)
+    2. Support multiple filters, transformers and output handlers
+    3. Support filters that are mongodb filter expressions to be applied on saved doc
+    in filterCollection.
+  ###
+  constructor: (@options = {})->
+    try
+      log.enter('constructor', arguments)
+      expect(@options).to.be.an 'object'
+      expect(@options.filter).to.be.a('function') if @options.filter?
+      expect(@options.transform).to.be.a('function') if @options.transform?
+      expect(@options.onOutput).to.be.a('function') if @options.onOutput?
+
+      if @options.outputCollection?
+        if typeof @options.outputCollection is "string"
+#          We need to create the collection
+          @outputCollection = new Mongo.Collection @options.outputCollection
+#       TODO: Support specifying ctor options for outputCollection
+        else if @options.outputCollection instanceof Mongo.Collection
+#          Got a ref to an existing collection
+          @outputCollection = @options.outputCollection
+    finally
+      log.return()
+
+  ###
+  Pipes the doc through filters and transformers, eventually saving it in a collection
+  and / or providing it to output handlers.
+  @return undefined, if doc was filtered or the (transformed) doc.
+  ###
+  pipe: (doc)->
+    try
+      log.enter('pipe', arguments)
+      if @options.filter?
+        pass = @options.filter(doc)
+        return if pass is false
+      if @options.transform?
+        doc = @options.transform(doc)
+        expect(doc).to.be.an 'object'
+      if @outputCollection?
+        doc._id = @outputCollection.insert doc
+      if @options.onOutput?
+        @options.onOutput(doc)
+      return doc
+    finally
+      log.return()

@@ -18,6 +18,7 @@ deps@1.0.7
 easy-meteor-settings@0.0.1
 easy-service-config@0.0.1
 ejson@1.0.6
+endpoint-puller@0.0.1
 fastclick@1.0.3
 geojson-utils@1.0.3
 github@1.1.3

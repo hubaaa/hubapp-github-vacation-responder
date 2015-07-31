@@ -32,10 +32,10 @@ Package.onTest(function(api) {
     'coffeescript',
     'practicalmeteor:loglevel',
     'practicalmeteor:chai',
-    'practicalmeteor:sinon'
+    'practicalmeteor:sinon',
+    'practicalmeteor:mocha'
   ]);
 
-  api.use('tinytest');
   api.use('easy-meteor-settings');
 
   api.addFiles('EasyMeteorSettingsTest.coffee');

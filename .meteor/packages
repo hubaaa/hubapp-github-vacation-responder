@@ -13,6 +13,9 @@ twbs:bootstrap
 service-configuration
 zimme:iron-router-active
 less
+accounts-ui
 easy-meteor-settings
 easy-service-config
-accounts-ui
+json-pipes
+endpoint-puller
+packaged-app
