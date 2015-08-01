@@ -19,16 +19,48 @@ class hubaaa.EndpointPuller extends hubaaa.JsonPipe
       log.enter('constructor', arguments)
       super(@jsonPipeOptions)
       expect(@pullOptions).to.be.an 'object'
-      @pullOptions.defaultInterval ?= EasyMeteorSettings.getSetting(defaultPullInterval, 5000)
-      expect(@pullOptions.defaultInterval).to.be.a('number').that.is.above(999)
+      @pullOptions.defaultPullInterval ?= EasyMeteorSettings.getSetting('packages.endpoint-puller.defaultPullInterval', 5000)
+      expect(@pullOptions.defaultPullInterval).to.be.a('number').that.is.above(999)
       @pull()
     finally
       log.return()
 
-  pull: ->
+# TODO: Standardize on time zone for all requests.
+  pull: =>
     try
       log.enter('pull', arguments)
+      delete @timerId if @timerId?
       result = HTTP.get @endpoint, @httpOptions
-      log.info result.data
+      if @httpOptions.headers['If-Modified-Since']?
+        # No new events related to the user
+        if result.statusCode is 304
+          log.info 'Nothing changed.'
+          @timerId = Meteor.setTimeout @pull, @pullOptions.defaultPullInterval
+          return
+      expect(result.statusCode).to.equal 200
+      # TODO: Do this only if sendIfModifiedSince option is true
+      # Apparently this http client is lowercasing http headers.
+      if result.headers['last-modified']?
+        # So next request will use it
+        log.debug 'last-modified:', result.headers['last-modified']
+        @httpOptions.headers['If-Modified-Since'] = result.headers['last-modified']
+      else if @httpOptions.headers['If-Modified-Since']?
+        # If we didn't get a last-modified header, we can't use an If-Modified-Since header
+        log.debug 'Deleting If-Modified-Since header for next request.'
+        delete @httpOptions.headers['If-Modified-Since']
+      if _.isArray(result.data)
+        for doc in result.data
+          expect(doc).to.be.an 'object'
+          processedDoc = @pipe(doc)
+          log.fine 'processedDoc:', processedDoc
+      else
+        processedDoc = @pipe result.data
+        log.debug 'processedDoc:', processedDoc
+      log.debug 'defaultPullInterval:', @pullOptions.defaultPullInterval
+      @timerId = Meteor.setTimeout @pull, @pullOptions.defaultPullInterval
+    catch ex
+      # So we continue trying
+      log.error ex
+      Meteor.setTimeout @pull, @pullOptions.defaultPullInterval if not @timerId?
     finally
       log.return()

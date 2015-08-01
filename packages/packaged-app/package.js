@@ -22,11 +22,13 @@ Package.onUse(function(api) {
     'practicalmeteor:loglevel',
     'practicalmeteor:chai',
     'easy-meteor-settings',
+    'practicalmeteor:underscore.string',
     'bruz:github-api'
   ]);
 
 
   api.addFiles('GitHubVacationResponder.coffee', 'server');
+  api.addFiles('GitHubVacationResponderFactory.coffee', 'server');
 });
 
 Package.onTest(function(api) {

@@ -30,7 +30,7 @@ class hubaaa.JsonPipe
       expect(@options).to.be.an 'object'
       expect(@options.filter).to.be.a('function') if @options.filter?
       expect(@options.transform).to.be.a('function') if @options.transform?
-      expect(@options.onOutput).to.be.a('function') if @options.onOutput?
+      expect(@options.process).to.be.a('function') if @options.process?
 
       if @options.outputCollection?
         if typeof @options.outputCollection is "string"
@@ -46,21 +46,25 @@ class hubaaa.JsonPipe
   ###
   Pipes the doc through filters and transformers, eventually saving it in a collection
   and / or providing it to output handlers.
+  First argument of call to filter / transform / process is always context, which is a new clean object for each call to pipe,
+  where you can put whatever you want on it, for later steps in the pipe. We don't use this, because I don't want to mess up
+  with the this of filters / transformers / processors. And in general, I don't like changing thises - non-split personalities is a good thing :)
   @return undefined, if doc was filtered or the (transformed) doc.
   ###
   pipe: (doc)->
     try
       log.enter('pipe', arguments)
+      context = {}
       if @options.filter?
-        pass = @options.filter(doc)
+        pass = @options.filter(context, doc)
         return if pass is false
       if @options.transform?
-        doc = @options.transform(doc)
-        expect(doc).to.be.an 'object'
+        transformedDoc = @options.transform(context, doc)
+        expect(transformedDoc).to.be.an 'object'
       if @outputCollection?
-        doc._id = @outputCollection.insert doc
-      if @options.onOutput?
-        @options.onOutput(doc)
-      return doc
+        transformedDoc._id = @outputCollection.insert transformedDoc
+      if @options.process?
+        @options.process(context, doc, transformedDoc)
+      return transformedDoc
     finally
       log.return()
