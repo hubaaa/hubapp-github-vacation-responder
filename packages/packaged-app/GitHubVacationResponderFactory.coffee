@@ -1,4 +1,4 @@
-log = new ObjectLogger('hubaaa.GitHubVacationResponderFactory', 'debug')
+log = new ObjectLogger('hubaaa.GitHubVacationResponderFactory', 'info')
 
 class hubaaa.GitHubVacationResponderFactory
 

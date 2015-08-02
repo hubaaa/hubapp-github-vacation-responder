@@ -1,7 +1,20 @@
 <template name="masterLayout">
-  {{> yield region='nav'}}
-  <div id="content">
-    {{> yield}}
+  {{> nav}}
+
+  <div id="content" class="container">
+  {{#if currentUser}}
+    {{> hubapp_user_settings_form}}
+  {{else}}
+    {{#if loggingIn}}
+      <p class="text-center" style="font-size: 20px;">
+      Signing in...
+      </p>
+    {{else}}
+      <p class="text-center" style="font-size: 20px;">
+        Please Sign-In to create a GitHub on vacation auto-reply for your personal open source projects.
+      </p>
+    {{/if}}
+  {{/if}}
   </div>
-  {{> yield region='footer'}}
+  {{> footer}}
 </template>

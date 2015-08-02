@@ -14,25 +14,38 @@ Package.onUse(function(api) {
   api.versionsFrom('1.1.0.2');
 
   api.use([
-    'meteor',
+    'meteor-platform',
     'underscore',
     'coffeescript',
     'http',
     'mongo',
+    'templating',
     'accounts-github',
     'practicalmeteor:loglevel',
     'practicalmeteor:chai',
     'easy-meteor-settings',
     'practicalmeteor:underscore.string',
+    'twbs:bootstrap',
+    'ian:accounts-ui-bootstrap-3@1.2.76',
+    'tsega:bootstrap3-datetimepicker@3.1.3_3',
     'aldeed:simple-schema@1.3.3',
+    'aldeed:collection2@2.3.3',
+    'aldeed:autoform@5.3.1',
+    'aldeed:autoform-bs-datetimepicker@1.0.6',
+    'aldeed:delete-button@1.0.0',
     'json-pipes',
     'endpoint-puller',
     'bruz:github-api'
   ]);
 
 
-  api.addFiles('namespace.coffee');
-  api.addFiles('VacationSchema.coffee');
+  api.addFiles('src/lib/namespace.coffee');
+  api.addFiles('src/lib/model/VacationSchema.coffee');
+  api.addFiles('src/lib/model/UserSettings.coffee');
+  api.addFiles([
+    'src/client/hubapp_user_settings.html',
+    'src/client/hubapp_user_settings.coffee'
+    ], 'client');
   api.addFiles('GitHubVacationResponder.coffee', 'server');
   api.addFiles('GitHubVacationResponderFactory.coffee', 'server');
 });

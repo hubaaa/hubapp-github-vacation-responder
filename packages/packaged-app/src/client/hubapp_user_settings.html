@@ -1,0 +1,12 @@
+<template name="hubapp_user_settings_form">
+  {{#if Template.subscriptionsReady}}
+    {{#if settings}}
+      {{> quickForm id="hubapp_user_settings_insert_form" collection="hubapp_user_settings" fields="startDate,endDate,autoResponseText" type="update" buttonContent="Update" doc=settings}}
+      {{#quickRemoveButton collection="hubapp_user_settings" _id=settings._id}}Remove{{/quickRemoveButton}}
+    {{else}}
+      {{> quickForm id="hubapp_user_settings_update_form" collection="hubapp_user_settings" fields="startDate,endDate,autoResponseText" type="insert" buttonContent="Create"}}
+    {{/if}}
+  {{else}}
+    Loading your app settings...
+  {{/if}}
+</template>

@@ -1,4 +1,4 @@
-log = new ObjectLogger('hubaaa.GitHubVacationResponder', 'debug')
+log = new ObjectLogger('hubaaa.GitHubVacationResponder', 'info')
 
 githubIssues = new Mongo.Collection "github.issues"
 githubIssues._ensureIndex { id: 1 }, { unique: true }
