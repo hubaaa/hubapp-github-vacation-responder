@@ -19,14 +19,20 @@ Package.onUse(function(api) {
     'coffeescript',
     'http',
     'mongo',
+    'accounts-github',
     'practicalmeteor:loglevel',
     'practicalmeteor:chai',
     'easy-meteor-settings',
     'practicalmeteor:underscore.string',
+    'aldeed:simple-schema@1.3.3',
+    'json-pipes',
+    'endpoint-puller',
     'bruz:github-api'
   ]);
 
 
+  api.addFiles('namespace.coffee');
+  api.addFiles('VacationSchema.coffee');
   api.addFiles('GitHubVacationResponder.coffee', 'server');
   api.addFiles('GitHubVacationResponderFactory.coffee', 'server');
 });
@@ -40,10 +46,12 @@ Package.onTest(function(api) {
     'practicalmeteor:chai',
     'bruz:github-api',
     'practicalmeteor:sinon',
-    'practicalmeteor:mocha'
+    'practicalmeteor:mocha',
+    'momentjs:moment'
   ]);
 
   api.use('packaged-app');
 
+  api.addFiles('VacationSchemaTest.coffee');
   api.addFiles('GitHubVacationResponderTest.coffee', 'server');
 });

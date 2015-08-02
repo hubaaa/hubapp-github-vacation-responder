@@ -26,4 +26,5 @@ class hubaaa.GitHubVacationResponderFactory
       log.return()
 
 Meteor.startup ->
-  hubaaa.GitHubVacationResponderFactory.get().start()
+  if not process.env.METEOR_TEST_PACKAGES?
+    hubaaa.GitHubVacationResponderFactory.get().start()
