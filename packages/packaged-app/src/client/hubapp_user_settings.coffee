@@ -10,7 +10,26 @@ Template.hubapp_user_settings_form.onCreated ->
 Template.hubapp_user_settings_form.helpers
   settings: ->
     try
-      log.enter 'settings', hubapp_user_settings.findOne( { userId: Meteor.userId() } )
-      return hubapp_user_settings.findOne( { userId: Meteor.userId() } )
+      log.enter 'settings', hubapp_user_settings.findOne( { _id: Meteor.userId() } )
+      return hubapp_user_settings.findOne( { _id: Meteor.userId() } )
     finally
       log.return()
+
+  schema: ->
+    return hubapp.settings_schema
+
+  onDeleteError: ->
+    (error)->
+      try
+        log.enter 'onDeleteError', arguments
+        log.error error
+      finally
+        log.return()
+
+  onDeleteSuccess: ->
+    (result)->
+      try
+        log.enter 'onDeleteError', arguments
+        log.info result
+      finally
+        log.return()

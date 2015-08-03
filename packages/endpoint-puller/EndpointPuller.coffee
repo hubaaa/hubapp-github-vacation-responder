@@ -21,7 +21,6 @@ class hubaaa.EndpointPuller extends hubaaa.JsonPipe
       expect(@pullOptions).to.be.an 'object'
       @pullOptions.defaultPullInterval ?= EasyMeteorSettings.getSetting('packages.endpoint-puller.defaultPullInterval', 5000)
       expect(@pullOptions.defaultPullInterval).to.be.a('number').that.is.above(999)
-      @pull()
     finally
       log.return()
 
@@ -29,13 +28,13 @@ class hubaaa.EndpointPuller extends hubaaa.JsonPipe
   pull: =>
     try
       log.enter('pull', arguments)
-      delete @timerId if @timerId?
+      delete @pullTimer if @pullTimer?
       result = HTTP.get @endpoint, @httpOptions
       if @httpOptions.headers['If-Modified-Since']?
         # No new events related to the user
         if result.statusCode is 304
           log.info 'Nothing changed.'
-          @timerId = Meteor.setTimeout @pull, @pullOptions.defaultPullInterval
+          @pullTimer = Meteor.setTimeout @pull, @pullOptions.defaultPullInterval
           return
       expect(result.statusCode).to.equal 200
       # TODO: Do this only if sendIfModifiedSince option is true
@@ -57,10 +56,10 @@ class hubaaa.EndpointPuller extends hubaaa.JsonPipe
         processedDoc = @pipe result.data
         log.debug 'processedDoc:', processedDoc
       log.debug 'defaultPullInterval:', @pullOptions.defaultPullInterval
-      @timerId = Meteor.setTimeout @pull, @pullOptions.defaultPullInterval
+      @pullTimer = Meteor.setTimeout @pull, @pullOptions.defaultPullInterval
     catch ex
       # So we continue trying
       log.error ex
-      Meteor.setTimeout @pull, @pullOptions.defaultPullInterval if not @timerId?
+      Meteor.setTimeout @pull, @pullOptions.defaultPullInterval if not @pullTimer?
     finally
       log.return()

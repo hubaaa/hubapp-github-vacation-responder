@@ -1,10 +1,10 @@
 log = new ObjectLogger('VacationSchemaTest')
 
-describe 'VacationSchema', ->
+describe 'settings_schema', ->
     testContext = null
 
     beforeEach ->
-      testContext = hubapp.VacationSchema.newContext()
+      testContext = hubapp.settings_schema.newContext()
 
     it 'verifies startDate is a future date', ->
       testContext.validate

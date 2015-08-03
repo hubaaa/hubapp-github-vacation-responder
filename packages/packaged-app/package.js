@@ -40,8 +40,9 @@ Package.onUse(function(api) {
 
 
   api.addFiles('src/lib/namespace.coffee');
-  api.addFiles('src/lib/model/VacationSchema.coffee');
-  api.addFiles('src/lib/model/UserSettings.coffee');
+  api.addFiles('src/lib/model/settings_schema.coffee');
+  api.addFiles('src/lib/model/settings_collection.coffee');
+  api.addFiles('src/server/lib/model/settings_collection.coffee', 'server');
   api.addFiles([
     'src/client/hubapp_user_settings.html',
     'src/client/hubapp_user_settings.coffee'

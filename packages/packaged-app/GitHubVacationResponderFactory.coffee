@@ -21,7 +21,9 @@ class hubaaa.GitHubVacationResponderFactory
       users = @users.find( { 'services.github.accessToken': { $exists: true } } ).fetch()
       for user in users
         expect(user.services.github.username).to.be.ok
-        @responders[user.services.github.username] = new hubaaa.GitHubVacationResponder(user)
+        vacationSettings = hubapp_user_settings.findOne _id: user._id
+        if vacationSettings?
+          @responders[user.services.github.username] = new hubaaa.GitHubVacationResponder(user, vacationSettings)
     finally
       log.return()
 

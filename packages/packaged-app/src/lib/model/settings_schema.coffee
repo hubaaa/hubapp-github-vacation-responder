@@ -1,12 +1,11 @@
-log = new ObjectLogger('VacationSchema', 'info')
+log = new ObjectLogger('settings_schema', 'info')
 
 try
-  log.enter 'hubapp.VacationSchema'
-  hubapp.VacationSchema = new SimpleSchema({
-    userId:
+  log.enter 'hubapp.settings_schema'
+  hubapp.settings_schema = new SimpleSchema
+    _id:
       type: String
-      autoValue: ->
-        return @userId
+      optional: true
 
     startDate:
       type: Date
@@ -35,7 +34,6 @@ try
       max: 200
       autoform:
         rows: 3
-  })
 
 finally
   log.return()

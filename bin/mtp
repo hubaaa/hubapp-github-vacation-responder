@@ -1,4 +1,3 @@
 #!/bin/bash -e
 
-meteor-test-packages.sh --driver-package=practicalmeteor:mocha $@
-
+mtp --driver-package=practicalmeteor:mocha $@
