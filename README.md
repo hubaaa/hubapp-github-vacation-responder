@@ -1,4 +1,4 @@
-## Hubaaa's GutHub Vacation Auto-Responder
+## Hubaaa's GitHub Vacation Auto-Responder
 
 Very much work in progress and test coverage is far from what it should be.
 
