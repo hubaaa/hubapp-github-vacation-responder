@@ -24,7 +24,7 @@ Please do not create issues in this repo just to generate auto-responses.
 
 See [Developer's Guide](docs/DevGuide.md).
 
-Also, all the [meteor packages](packages) in this repo, will each get a repo of their own soon.
+Also, all of the [meteor packages](packages) in this repo (json-pipes, endpoint-puller, etc.), will each get a repo of their own soon.
 
 ### License
 
