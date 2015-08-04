@@ -4,13 +4,13 @@ Very much work in progress and test coverage is far from what it should be.
 
 A meteor app that allows you to specify a "I'm on vacation" auto-comment for your personal public repos.
 
-For every issue / pull request that will be created or commented on while you're on vacation, it will only auto-comment once (not fully tested, though).
+For every issue / pull request that will be created or commented on while you're on vacation, it will only auto-comment once.
 
 You can see a live demo at (UX still needs a lot of work):
 
 https://hubaaa-github-vacation-responder.meteor.com/
 
-Note that if you create an issue in your own repo, you will NOT get a response. Only others will get it in your repos.
+Note that if you create an issue in your own repo, you will NOT get a response. Only non-owners will get a reply.
 
 Try it out in a personal [test repo](https://github.com/rbabayoff/github-app-test-repo) of mine - I'm always on vacation, apparently :-)
 
@@ -18,7 +18,7 @@ Please do not create issues in this repo just to get auto replies.
 
 ### Known Issues
 
-- No way to disable it, you can only update dates and text. Will be adding disabling support shortly. For now, just set it to a far away date, if you want to disable it.
+- No way to disable it, you can only update dates and text. I will be adding disabling support shortly. For now, just set it to a far away date, if you want to disable it.
 
 ### Contributing
 
