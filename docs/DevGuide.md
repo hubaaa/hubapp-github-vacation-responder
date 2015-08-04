@@ -1,6 +1,6 @@
 ## Development Guide
 
-This is WIP. Will include complete how-to guide soon. For now, it's just scraps for keeping notes.
+This is WIP. Will include a complete how-to guide soon. For now, it's just scraps for keeping notes.
 
 ### Install ngrok
 
