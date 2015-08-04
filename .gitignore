@@ -1,6 +1,6 @@
 # custom
 *.env
-settings.json
+*settings.json
 curl.sh
 .idea
 

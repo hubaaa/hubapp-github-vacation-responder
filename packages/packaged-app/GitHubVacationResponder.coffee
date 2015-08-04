@@ -12,7 +12,7 @@ class hubaaa.GitHubVacationResponder extends hubaaa.EndpointPuller
   @httpOptions - Passed as is to meteor's HTTP.get
   @pullOptions - Pull specific options:
   ###
-  constructor: (@user, @vacationSettings)->
+  constructor: (@user, @appSettings)->
     try
       log.enter('constructor', arguments)
 
@@ -20,10 +20,10 @@ class hubaaa.GitHubVacationResponder extends hubaaa.EndpointPuller
       expect(@user?).to.be.true
       expect(@user.services.github.username).to.be.ok
       expect(@user.services.github.accessToken).to.be.ok
-      expect(@vacationSettings?).to.be.true
-      expect(@vacationSettings.startDate).to.be.an.instanceof Date
-      expect(@vacationSettings.endDate).to.be.an.instanceof Date
-      expect(@vacationSettings.autoResponseText).to.be.a('string').that.is.ok
+      expect(@appSettings?).to.be.true
+      expect(@appSettings.startDate).to.be.an.instanceof Date
+      expect(@appSettings.endDate).to.be.an.instanceof Date
+      expect(@appSettings.autoResponseText).to.be.a('string').that.is.ok
 
       @username = @user.services.github.username
       @accessToken = @user.services.github.accessToken
@@ -37,7 +37,7 @@ class hubaaa.GitHubVacationResponder extends hubaaa.EndpointPuller
 #        host: "api.github.com"
         timeout: 10000
         headers:
-          "User-Agent": "Ronen.Hubaaa" # GitHub is happy with a unique user agent
+          "User-Agent": EasyMeteorSettings.getRequiredSetting('appName') # GitHub is happy with a unique user agent that matches the app name
 
       @github.authenticate
         type: "oauth"
@@ -45,20 +45,18 @@ class hubaaa.GitHubVacationResponder extends hubaaa.EndpointPuller
 
       endpoint = "https://api.github.com/users/#{@username}/received_events"
 
-      @httpOptions =
+      httpOptions =
         headers:
           "Authorization": "token #{@accessToken}"
           "Accept": "application/vnd.github.v3+json"
-          "User-Agent": "Ronen.Hubaaa"
+          "User-Agent": EasyMeteorSettings.getRequiredSetting('appName')
 
       jsonPipeOptions =
         filter: @filter
         transform: @transform
         process: @process
 
-      super(endpoint, @httpOptions, sendIfModifiedSinceHeader: true, jsonPipeOptions)
-
-      @init()
+      super(endpoint, httpOptions, sendIfModifiedSinceHeader: true, jsonPipeOptions)
     finally
       log.return()
 
@@ -81,18 +79,18 @@ class hubaaa.GitHubVacationResponder extends hubaaa.EndpointPuller
           log.error ex
         delete @stopTimer
 
-      return if @vacationSettings.endDate <= Date.now()
+      return if @appSettings.endDate.valueOf() <= Date.now()
 
       # Let's first create the stop timer, in case the start timer throws an exception
-      stopDelay = vacationSettings.endDate.valueOf() - Date.now()
+      stopDelay = @appSettings.endDate.valueOf() - Date.now()
       @stopTimer = Meteor.setTimeout @stop, stopDelay
 
-      if vacationSettings.startDate <= Date.now()
+      if @appSettings.startDate.valueOf() <= Date.now()
         # Start immediately
         @start()
         return
 
-      startDelay = vacationSettings.startDate.valueOf() - Date.now()
+      startDelay = @appSettings.startDate.valueOf() - Date.now()
       @startTimer = Meteor.setTimeout @start, startDelay
       return
     finally
@@ -109,6 +107,7 @@ class hubaaa.GitHubVacationResponder extends hubaaa.EndpointPuller
 
   stop: =>
     try
+      log.enter 'stop'
       # This is the EndpointPuller pull timeout
       if @pullTimer?
         try
@@ -129,6 +128,12 @@ class hubaaa.GitHubVacationResponder extends hubaaa.EndpointPuller
   filter: (context, event)=>
     try
       log.fineEnter('filter', event)
+      expect(event.created_at).to.be.ok
+      created_at = new Date(event.created_at)
+      expect(created_at).to.be.ok
+
+      return false if created_at.valueOf() < @appSettings.startDate.valueOf()
+
       if event.type is "IssuesEvent"
         return false if event.payload.action not in ["opened", 'reopened']
         html_url = event.payload.issue.html_url
@@ -147,6 +152,8 @@ class hubaaa.GitHubVacationResponder extends hubaaa.EndpointPuller
 
       issue = githubIssues.findOne { html_url: html_url }
       return false if issue? # Already responded on this issue
+
+      return true
     finally
       log.fineReturn()
 
@@ -155,8 +162,12 @@ class hubaaa.GitHubVacationResponder extends hubaaa.EndpointPuller
       log.enter('transform', event)
       if event.payload.issue?
         issueType = 'issue'
-      else
+      else if event.payload.pull_request?
         issueType = "pull_request"
+      else
+        log.warn 'event:', event
+        throw event
+
       issue = _.pick event.payload[issueType], 'id', 'number', 'url', 'comments_url', 'html_url'
       # Some fields we pick for debugging purposes only
       issue.type = issueType
@@ -175,7 +186,8 @@ class hubaaa.GitHubVacationResponder extends hubaaa.EndpointPuller
       expect(issue.comments_url).to.be.ok
 
       comment =
-        body: "Hey @#{event.actor.login},\n\n#{@vacationSettings.autoResponseText}\n\nThis comment was automatically generated by [Hubaaa's](http://hubaaa.com) [GitHub Vacation Responder](http://hubaaa.com/apps/github-vacation-responder) app."
+        body: "Hey @#{event.actor.login},\n\n#{@appSettings.autoResponseText}\n\nThis comment was automatically generated by Hubaaa's GitHub Vacation Auto-Response app."
+#        body: "Hey @#{event.actor.login},\n\n#{@appSettings.autoResponseText}\n\nThis comment was automatically generated by [Hubaaa's](http://hubaaa.com) [GitHub Vacation Responder](http://hubaaa.com/apps/github-vacation-responder) app."
 
       postHttpOptions = EJSON.clone(@httpOptions)
       postHttpOptions.data = comment

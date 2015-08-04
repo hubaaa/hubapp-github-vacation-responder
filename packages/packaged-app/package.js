@@ -20,19 +20,20 @@ Package.onUse(function(api) {
     'http',
     'mongo',
     'templating',
+    'random',
+    'ejson',
     'accounts-github',
-    'practicalmeteor:loglevel',
-    'practicalmeteor:chai',
+    'practicalmeteor:loglevel@1.2.0_2',
+    'practicalmeteor:chai@2.1.0_1',
     'easy-meteor-settings',
     'practicalmeteor:underscore.string',
     'twbs:bootstrap',
     'ian:accounts-ui-bootstrap-3@1.2.76',
     'tsega:bootstrap3-datetimepicker@3.1.3_3',
     'aldeed:simple-schema@1.3.3',
-    'aldeed:collection2@2.3.3',
+    //'aldeed:collection2@2.3.3',
     'aldeed:autoform@5.3.1',
     'aldeed:autoform-bs-datetimepicker@1.0.6',
-    'aldeed:delete-button@1.0.0',
     'json-pipes',
     'endpoint-puller',
     'bruz:github-api'
@@ -56,12 +57,11 @@ Package.onTest(function(api) {
     'underscore',
     'coffeescript',
     'http',
-    'practicalmeteor:loglevel',
-    'practicalmeteor:chai',
-    'bruz:github-api',
-    'practicalmeteor:sinon',
-    'practicalmeteor:mocha',
-    'momentjs:moment'
+    //'bruz:github-api',
+    'practicalmeteor:mocha@2.1.0_1',
+    'momentjs:moment',
+    'random',
+    'ejson'
   ]);
 
   api.use('packaged-app');

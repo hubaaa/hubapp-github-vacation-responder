@@ -36,6 +36,9 @@ Meteor.methods
 
       log.info 'finalValidatedDoc:', doc
       hubapp_user_settings.upsert _id: doc._id, doc
+      # TODO: We should probably rely on meteor's observeChanges for this in GitHubVacationResponderFactory
+      # and not call it directly.
+      hubaaa.GitHubVacationResponderFactory.get().update doc
     finally
       log.return()
 

@@ -17,8 +17,8 @@ Package.onUse(function(api) {
     'underscore',
     'coffeescript',
     'service-configuration',
-    'practicalmeteor:loglevel',
-    'practicalmeteor:chai',
+    'practicalmeteor:loglevel@1.2.0_2',
+    'practicalmeteor:chai@2.1.0_1',
     'easy-meteor-settings'
   ], 'server');
 
@@ -29,9 +29,7 @@ Package.onTest(function(api) {
   api.use([
     'underscore',
     'coffeescript',
-    'practicalmeteor:loglevel',
-    'practicalmeteor:chai',
-    'practicalmeteor:sinon'
+    'practicalmeteor:mocha@2.1.0_1'
   ], 'server');
 
   api.use('tinytest');

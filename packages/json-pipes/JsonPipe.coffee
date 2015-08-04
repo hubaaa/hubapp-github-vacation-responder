@@ -57,7 +57,7 @@ class hubaaa.JsonPipe
       context = {}
       if @options.filter?
         pass = @options.filter(context, doc)
-        return if pass is false
+        return if pass isnt true
       if @options.transform?
         transformedDoc = @options.transform(context, doc)
         expect(transformedDoc).to.be.an 'object'

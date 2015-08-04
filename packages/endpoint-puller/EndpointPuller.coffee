@@ -59,7 +59,7 @@ class hubaaa.EndpointPuller extends hubaaa.JsonPipe
       @pullTimer = Meteor.setTimeout @pull, @pullOptions.defaultPullInterval
     catch ex
       # So we continue trying
-      log.error ex
+      log.error ex.stack
       Meteor.setTimeout @pull, @pullOptions.defaultPullInterval if not @pullTimer?
     finally
       log.return()
