@@ -10,11 +10,11 @@ You can see a live demo at (UX still needs a lot of work):
 
 https://hubaaa-github-vacation-responder.meteor.com/
 
-Note that if you create an issue in your own repo, you will NOT get a response. Only non-owners will get a reply.
+Note that if you create an issue in your own repo, you will NOT get a response. Only non-owners will get a response.
 
 Try it out in a personal [test repo](https://github.com/rbabayoff/github-app-test-repo) of mine - I'm always on vacation, apparently :-)
 
-Please do not create issues in this repo just to get auto replies.
+Please do not create issues in this repo just to generate auto-responses.
 
 ### Known Issues
 
