@@ -2,7 +2,7 @@
 
 Very much work in progress and test coverage is far from what it should be.
 
-A meteor app that allows you to specify a "I'm on vacation" auto-comment for your personal public repos.
+A meteor app that allows you to specify a "I'm on vacation" auto-comment for your **personal** public repos.
 
 For every issue / pull request that will be created or commented on while you're on vacation, it will only auto-comment once.
 
