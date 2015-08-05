@@ -18,7 +18,7 @@ Please do not create issues in this repo just to generate auto-responses.
 
 ### Known Issues
 
-- No way to disable it, you can only update dates and text. I will be adding disabling support shortly. For now, just set it to a far away date, if you want to disable it.
+- No way to disable it, you can only update it, once created. I will be adding disabling support shortly. For now, just set it to a far away date, if you want to disable it.
 
 ### Contributing
 
