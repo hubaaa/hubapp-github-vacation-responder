@@ -22,3 +22,5 @@ aldeed:autoform-bs-datetimepicker@1.0.6
 ian:accounts-ui-bootstrap-3@1.2.76
 practicalmeteor:loglevel@1.2.0_1
 force-ssl
+momentjs:moment
+ovcharik:alertifyjs@1.4.1

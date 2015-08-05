@@ -2,9 +2,6 @@
   {{#if Template.subscriptionsReady}}
     {{> quickForm id="hubapp_user_settings_form" schema=schema doc=settings omitFields="_id" type="method" meteormethod="hubapp/settings/save" buttonContent="Save"}}
 <!--TODO: quickRemoveButton just doesn't work. We'll write our own.-->
-    <!--{{#if settings._id}}-->
-      <!--{{#quickRemoveButton collection="hubapp_user_settings" _id=settings._id onError=onDeleteError onSuccess=onDeleteSuccess}}Delete{{/quickRemoveButton}}-->
-    <!--{{/if}}-->
   {{else}}
     Loading your app settings...
   {{/if}}
