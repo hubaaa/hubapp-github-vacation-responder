@@ -64,7 +64,7 @@ Package.onTest(function(api) {
     'coffeescript',
     'http',
     //'bruz:github-api',
-    'practicalmeteor:mocha@2.1.0_1',
+    'practicalmeteor:mocha@2.1.0_3',
     'momentjs:moment',
     'random',
     'ejson'
