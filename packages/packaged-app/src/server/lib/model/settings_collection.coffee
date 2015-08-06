@@ -26,8 +26,8 @@ Meteor.methods
       validationContext.validate(doc, {modifier: false, isModifier: false})
       if not validationContext.isValid()
         throw new Meteor.Error 'invalid-settings', "The hubapp settings you're trying to save are invalid.", validationContext.invalidKeys()
-      expect(doc.startDate, 'startDate').to.be.an.instanceof Date
-      expect(doc.endDate, 'endDate').to.be.an.instanceof Date
+      expect(doc.dateRange[0], 'startDate').to.be.an.instanceof Date
+      expect(doc.dateRange[1], 'endDate').to.be.an.instanceof Date
       if not doc._id?
         log.info 'Creating settings.'
         doc._id = @userId
@@ -36,6 +36,10 @@ Meteor.methods
 
       log.info 'finalValidatedDoc:', doc
       hubapp_user_settings.upsert _id: doc._id, doc
+
+      # So transform function can do it's thing
+      doc = hubapp_user_settings.findOne(_id: doc._id)
+
       # TODO: We should probably rely on meteor's observeChanges for this in GitHubVacationResponderFactory
       # and not call it directly.
       hubaaa.GitHubVacationResponderFactory.get().update doc

@@ -22,6 +22,7 @@ Package.onUse(function(api) {
     'templating',
     'random',
     'ejson',
+    'reactive-var',
     'accounts-github',
     'momentjs:moment',
     'practicalmeteor:loglevel@1.2.0_2',
@@ -31,7 +32,7 @@ Package.onUse(function(api) {
     'twbs:bootstrap',
     'ian:accounts-ui-bootstrap-3@1.2.76',
     'tsega:bootstrap3-datetimepicker@3.1.3_3',
-    'antalakas:autoform-bs-daterangepicker@0.1.3',
+    'antalakas:autoform-bs-daterangepicker@2.0.6_1',
     'aldeed:simple-schema@1.3.3',
     //'aldeed:collection2@2.3.3',
     'aldeed:autoform@5.3.1',
@@ -42,6 +43,8 @@ Package.onUse(function(api) {
     'bruz:github-api'
   ]);
 
+
+  api.imply('meteor-platform');
 
   api.addFiles('src/lib/namespace.coffee');
   api.addFiles('src/lib/model/settings_schema.coffee');
