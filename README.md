@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/rbabayoff/hubaaa-github-vacation-responder.svg)](https://travis-ci.org/rbabayoff/hubaaa-github-vacation-responder)
+
 ## Hubaaa's GitHub Vacation Auto-Responder
 
 Very much work in progress and test coverage is far from what it should be.
