@@ -20,14 +20,14 @@ Meteor.methods
         throw new Meteor.Error 'not-owner', "The hubapp settings you're trying to save are not your own."
       # It's an insert, let's have the _id be the same as userId, because
       # autoform doesn't allow us to define _id in the schema and an autoValue for it
-      hubapp.settings_schema.clean(doc, isModifier: false)
+      hubapp.SettingsSchema.clean(doc, isModifier: false)
       log.info 'cleanedDoc:', doc
-      validationContext = hubapp.settings_schema.newContext()
+      validationContext = hubapp.SettingsSchema.newContext()
       validationContext.validate(doc, {modifier: false, isModifier: false})
       if not validationContext.isValid()
         throw new Meteor.Error 'invalid-settings', "The hubapp settings you're trying to save are invalid.", validationContext.invalidKeys()
-      expect(doc.dateRange[0], 'startDate').to.be.an.instanceof Date
-      expect(doc.dateRange[1], 'endDate').to.be.an.instanceof Date
+      expect(doc.startDate, 'startDate').to.be.an.instanceof Date
+      expect(doc.endDate, 'endDate').to.be.an.instanceof Date
       if not doc._id?
         log.info 'Creating settings.'
         doc._id = @userId
@@ -54,5 +54,23 @@ Meteor.methods
       docsRemoved = hubapp_user_settings.remove _id: @userId
       # Design for testability
       return docsRemoved
+    finally
+      log.return()
+
+  # @throwme for testing purposes
+  'hubapp/disable': (disabled, throwme)->
+    try
+      log.enter 'hubapp/disable', doc
+      if throwme?
+        throw new Meteor.Error throwme
+      if not @userId?
+        throw new Meteor.Error 'not-signed-in', "You need to be signed-in to disable or enable your app."
+      docsUpdated = hubapp_user_settings.update( { _id: @userId }, { $set: { disabled: disabled } } )
+      expect(docsUpdated).to.equal 1
+      doc = hubapp_user_settings.findOne _id: @userId
+      expect(doc?).to.be.true
+      hubaaa.GitHubVacationResponderFactory.get().update doc
+      # Design for testability
+      return disabled
     finally
       log.return()

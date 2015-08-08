@@ -1,9 +1,13 @@
-<template name="masterLayout">
+<template name="layout">
   {{> nav}}
 
   <div id="content" class="container">
   {{#if currentUser}}
-    {{> hubapp_user_settings_form}}
+    {{#if Template.subscriptionsReady}}
+      {{> hubapp_user_settings_form}}
+    {{else}}
+      Loading your app settings...
+    {{/if}}
   {{else}}
     {{#if loggingIn}}
       <p class="text-center" style="font-size: 20px;">

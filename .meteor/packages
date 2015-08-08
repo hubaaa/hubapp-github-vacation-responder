@@ -16,11 +16,10 @@ json-pipes
 endpoint-puller
 packaged-app
 aldeed:simple-schema@1.3.3
-aldeed:collection2@2.3.3
-aldeed:autoform@5.3.1
-aldeed:autoform-bs-datetimepicker@1.0.6
 ian:accounts-ui-bootstrap-3@1.2.76
 practicalmeteor:loglevel@1.2.0_1
-force-ssl
 momentjs:moment
 ovcharik:alertifyjs@1.4.1
+rbabayoff:bootstrap-daterangepicker@2.0.6_1
+manuel:viewmodel@1.8.9
+manuel:viewmodel-explorer@1.0.5

@@ -38,6 +38,9 @@ class hubaaa.GitHubVacationResponderFactory
   update: (appSettings)=>
     try
       log.enter('userAppSettings')
+      if process.env.ACCOUNTS_PASSWORD is "1"
+        log.warn "Using accounts-password instead of accounts-github, app will not run."
+        return
       user = @users.findOne _id: appSettings._id
       expect(user).to.be.ok
       expect(user.services.github.accessToken).to.be.ok
@@ -46,6 +49,7 @@ class hubaaa.GitHubVacationResponderFactory
         # Clean it up
         @responders[user.services.github.username].stop()
         delete @responders[user.services.github.username]
+      return if appSettings.disabled is true
       @responders[user.services.github.username] = new hubaaa.GitHubVacationResponder(user, appSettings)
       @responders[user.services.github.username].init()
     finally
