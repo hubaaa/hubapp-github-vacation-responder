@@ -29,7 +29,7 @@ Package.onTest(function(api) {
   api.use([
     'underscore',
     'coffeescript',
-    'practicalmeteor:mocha@2.1.0_1'
+    'practicalmeteor:mocha@2.1.0_3'
   ]);
 
   api.use('json-pipes');

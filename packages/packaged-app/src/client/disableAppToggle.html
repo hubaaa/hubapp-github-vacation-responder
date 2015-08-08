@@ -1,0 +1,9 @@
+<template name="disableAppToggle">
+  <form class="navbar-form navbar-left" style="padding-right: 0px;">
+    <div class="form-group">
+      <span id="disableAppTooltip" data-toggle="tooltip" data-bind="attr: {title: tooltip}">
+      <input id="disableAppToggle" type="checkbox" class="form-control" data-bind="enabled: hasSettings, checked: appEnabled, change: onChange" data-toggle="toggle" data-on="Enabled" data-off="Disabled" />
+      </span>
+    </div>
+  </form>
+</template>

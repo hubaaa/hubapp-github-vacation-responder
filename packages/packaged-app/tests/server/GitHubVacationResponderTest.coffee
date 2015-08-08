@@ -99,11 +99,13 @@ describe 'GitHubVacationResponder', ->
           log.enter 'starts immediately if startDate is due, calls stop and cleans timers on stop'
           appSettings.startDate = moment().subtract(1, 'seconds').toDate()
           appSettings.endDate = moment().add(200, 'milliseconds').toDate()
-          responder = new hubaaa.GitHubVacationResponder(testUser, appSettings)
+          expect(appSettings.startDate.valueOf()).to.be.lessThan Date.now()
           stubs.create('GET', HTTP, 'get').returns
             statusCode: 200
-            data: {}
+            data:
+              created_at: moment().format()
             headers: {}
+          responder = new hubaaa.GitHubVacationResponder(testUser, appSettings)
           spies.create 'pull', responder, 'pull'
           spies.create 'setTimeout', Meteor, 'setTimeout'
           spies.create 'start', responder, 'start'
@@ -138,11 +140,12 @@ describe 'GitHubVacationResponder', ->
           log.enter 'schedules start if startDate is in the future, calls stop and cleans timers on stop'
           appSettings.startDate = moment().add(100, 'seconds').toDate()
           appSettings.endDate = moment().add(300, 'milliseconds').toDate()
-          responder = new hubaaa.GitHubVacationResponder(testUser, appSettings)
           stubs.create('GET', HTTP, 'get').returns
             statusCode: 200
-            data: {}
+            data:
+              created_at: moment().format()
             headers: {}
+          responder = new hubaaa.GitHubVacationResponder(testUser, appSettings)
           spies.create 'pull', responder, 'pull'
           spies.create 'setTimeout', Meteor, 'setTimeout'
           spies.create 'start', responder, 'start'

@@ -15,6 +15,7 @@ Package.onUse(function(api) {
 
   api.use([
     'meteor-platform',
+    'less',
     'underscore',
     'coffeescript',
     'http',
@@ -22,6 +23,7 @@ Package.onUse(function(api) {
     'templating',
     'random',
     'ejson',
+    'reactive-var',
     'accounts-github',
     'momentjs:moment',
     'practicalmeteor:loglevel@1.2.0_2',
@@ -31,28 +33,61 @@ Package.onUse(function(api) {
     'twbs:bootstrap',
     'ian:accounts-ui-bootstrap-3@1.2.76',
     'tsega:bootstrap3-datetimepicker@3.1.3_3',
-    'antalakas:autoform-bs-daterangepicker@0.1.3',
     'aldeed:simple-schema@1.3.3',
-    //'aldeed:collection2@2.3.3',
-    'aldeed:autoform@5.3.1',
-    'aldeed:autoform-bs-datetimepicker@1.0.6',
     'ovcharik:alertifyjs@1.4.1',
+    'rbabayoff:bootstrap-daterangepicker@2.0.6_1',
+    'manuel:viewmodel@1.8.9',
     'json-pipes',
     'endpoint-puller',
     'bruz:github-api'
   ]);
 
+  api.imply([
+    'meteor-platform',
+    'manuel:viewmodel@1.8.9'
+  ]);
 
-  api.addFiles('src/lib/namespace.coffee');
-  api.addFiles('src/lib/model/settings_schema.coffee');
-  api.addFiles('src/lib/model/settings_collection.coffee');
-  api.addFiles('src/server/lib/model/settings_collection.coffee', 'server');
+  if(process.env.ACCOUNTS_PASSWORD === "1")
+  {
+    api.use('accounts-password');
+    api.imply('accounts-password');
+  } else if (process.env.METEOR_TEST_PACKAGES !== "1") {
+    api.use('force-ssl');
+    api.imply('force-ssl');
+  }
+
+  if (process.env.METEOR_TEST_PACKAGES !== "1") {
+    api.use('manuel:viewmodel-explorer@1.0.5');
+    api.imply('manuel:viewmodel-explorer@1.0.5');
+  }
+
   api.addFiles([
+    'src/client/lib/bootstrap-toggle-2.2.1.css',
+    'src/client/lib/bootstrap-toggle-2.2.1.js'
+  ], 'client');
+  api.addFiles('src/lib/namespace.coffee');
+  api.addFiles('src/lib/SettingsSchema.coffee');
+  api.addFiles('src/lib/SettingsModel.coffee');
+  api.addFiles('src/server/lib/SettingsServer.coffee', 'server');
+  api.addFiles([
+    'src/client/Accounts.ui.config.coffee',
     'src/client/hubapp_user_settings.html',
-    'src/client/hubapp_user_settings.coffee'
+    'src/client/hubapp_user_settings.coffee',
+    'src/client/disableAppToggle.html',
+    'src/client/disableAppToggle.coffee',
+    'src/client/nav.html',
+    'src/client/nav.coffee',
+    'src/client/footer.html',
+    'src/client/layout.html',
+    'src/client/layout.coffee',
+    'src/client/main.less',
+    'src/client/main.html'
     ], 'client');
-  api.addFiles('GitHubVacationResponder.coffee', 'server');
-  api.addFiles('GitHubVacationResponderFactory.coffee', 'server');
+
+  api.addFiles([
+    'src/server/GitHubVacationResponder.coffee',
+    'src/server/GitHubVacationResponderFactory.coffee'
+  ], 'server');
 });
 
 Package.onTest(function(api) {
@@ -61,7 +96,7 @@ Package.onTest(function(api) {
     'coffeescript',
     'http',
     //'bruz:github-api',
-    'practicalmeteor:mocha@2.1.0_1',
+    'practicalmeteor:mocha@2.1.0_3',
     'momentjs:moment',
     'random',
     'ejson'
@@ -69,6 +104,6 @@ Package.onTest(function(api) {
 
   api.use('packaged-app');
 
-  api.addFiles('VacationSchemaTest.coffee');
-  api.addFiles('GitHubVacationResponderTest.coffee', 'server');
+  api.addFiles('tests/lib/SettingSchemaTest.coffee');
+  api.addFiles('tests/server/GitHubVacationResponderTest.coffee', 'server');
 });
