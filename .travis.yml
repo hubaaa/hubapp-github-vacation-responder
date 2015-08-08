@@ -10,4 +10,4 @@ before_install:
   - "npm install -g spacejam"
   - export PATH="$HOME/.meteor:$PATH"
 
-script: "bin/spacejam packages/*"
+script: "bin/travis-test.sh"
