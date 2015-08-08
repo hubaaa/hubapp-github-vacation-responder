@@ -1,0 +1,9 @@
+{
+  "appName": "myGitHubAppName",
+  "serviceConfigurations": {
+    "github": {
+      "clientId": "myGitHubAppClientID",
+      "secret": "myGitHubAppClientSecret"
+    }
+  }
+}

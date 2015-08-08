@@ -1,3 +1,5 @@
 #!/bin/bash -e
 
+source meteor.env
+
 mtp --driver-package=practicalmeteor:mocha@2.1.0_3 $@
