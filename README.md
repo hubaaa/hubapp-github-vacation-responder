@@ -18,10 +18,6 @@ Try it out in a personal [test repo](https://github.com/rbabayoff/github-app-tes
 
 Please do not create issues in this repo just to generate auto-responses.
 
-### Known Issues
-
-- No way to disable it, you can only update it, once created. I will be adding disabling support shortly. For now, just set it to a far away date, if you want to disable it.
-
 ### Contributing
 
 See [Developer's Guide](docs/DevGuide.md).
