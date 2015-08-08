@@ -29,6 +29,7 @@ describe 'GitHubVacationResponder', ->
     # We clone so we don't have unit test side effects
     testUser = EJSON.clone defaultTestUser
     appSettings = EJSON.clone defaultAppSettings
+    stubs.create('getRequiredSetting', EasyMeteorSettings, 'getRequiredSetting').returns 'test.hubaaa.com'
 
   afterEach ->
     stubs.restoreAll()
