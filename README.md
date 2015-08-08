@@ -16,7 +16,7 @@ Note that if you create an issue in your own repo, you will NOT get a response. 
 
 Try it out in a personal [test repo](https://github.com/rbabayoff/github-app-test-repo) of mine - I'm always on vacation, apparently :-)
 
-Please do not create issues in this repo just to generate auto-responses.
+Please do not create issues in **this** repo just to generate auto-responses.
 
 ### Contributing
 
