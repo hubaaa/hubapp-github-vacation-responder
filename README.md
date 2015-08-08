@@ -8,7 +8,7 @@ A meteor app that allows you to specify a "I'm on vacation" auto-comment for you
 
 For every issue / pull request that will be created or commented on while you're on vacation, it will only auto-comment once.
 
-You can see a live demo at (UX still needs a lot of work):
+You can play with a live demo at:
 
 https://hubaaa-github-vacation-responder.meteor.com/
 
