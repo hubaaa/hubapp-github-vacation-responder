@@ -2,13 +2,13 @@
 
 ## Prerequisites
 
-This is a [meteor](https://www.meteor.com/) app, so basic knowledge of meteor is probably required. Meteor is a full stack JavaScript only web application platform. From my many years of experience and after using meteor extensively in the last few years, I can attest that it cuts web app development time significantly.
+This is a [meteor](https://www.meteor.com/) app, so basic knowledge of meteor is probably required. Meteor is a full stack JavaScript only web application platform. Dealing with technology all my life, and with meteor extensively in the last few years, I have been repetitively proven that meteor cuts web app development time significantly :-)
 
 Since this app uses GitHub oauth authorization, you will need to:
 
 1. Create a GitHub developer application.
 
-2. Use some kind of http tunneling solution to be able to expose your local app on the Internet so Sign-In with GitHub will work. This guide will provide you instructions on using [ngrok](https://ngrok.com/), but there are other [soltuions](http://john-sheehan.com/blog/a-survey-of-the-localhost-proxying-landscape) out there.
+2. Use some kind of http tunneling solution to be able to expose your local app on the Internet so Sign-In with GitHub will work. This guide will provide you instructions on using [ngrok](https://ngrok.com/), but there are other [solutions](http://john-sheehan.com/blog/a-survey-of-the-localhost-proxying-landscape) out there.
 
 Also, if you're a team of developers (and as a rule of thumb in general), I recommend following the [The Twelve-Factor App](http://12factor.net/) principles religiosity in development environments too, so every developer has it's own completely separate environment, including separate domains, DBs, accounts, services, developer apps, etc.
 
@@ -142,7 +142,7 @@ vi meteor.env
 
 ### Install spacejam
 
-[spacejam](https://www.npmjs.com/package/spacejam) is an open source meteor tool I'm actively maintaining that deals with running meteor tests from the command line and in continuous integration environments and easily managing and running meteor and meteor tests in different environments. Though it is not required to use spacejam, this repo includes helper / shortcut scripts that rely on it and that will save you a lot of command line typing and application configuration management.
+[spacejam](https://www.npmjs.com/package/spacejam) is an open source meteor tool I'm actively maintaining that deals with running meteor tests from the command line and in continuous integration environments. It also includes scripts that help you manage and run meteor and meteor tests in different environments. Though it is not required to use spacejam, this repo includes helper / shortcut scripts that rely on it and that will save you a lot of command line typing and application configuration management.
 
 ```
 npm install -g spacejam
@@ -150,8 +150,43 @@ npm install -g spacejam
 
 ## Running the app
 
+Before you run the app, you will need to export your meteor environment variables by sourcing your meteor.env file:
 
+```bash
+# From the repo root
+source meteor.env
+```
+
+Then, just use the mrun script in the bin folder to run the meteor app. It will automatically take care of running meteor with your settings.json file:
+
+```bash
+# From the repo root
+bin/mrun
+```
+
+The app will now be accessible from the internet at:
+
+https://yourSubDomain.ngrok.io/
+
+Note that you will only have to source your meteor.env file once per terminal, even if you changed it, since mrun will automatically source it again every time before it runs meteor.
 
 ## Running and writing tests
 
+As with every meteor app of mine, all source code is maintained in packages, including the app specific code itself, in a package called packaged-app in this repo. Tests are written in mocha, using [practicalmeteor:mocha](https://atmospherejs.com/practicalmeteor/mocha) (a package I'm actively maintaining).
+
+To run all of this repo's meteor package tests in the browser:
+
+```bash
+# From the repo root
+bin/mtp packages/*
+````
+
+To run all of this repo's meteor package tests from the command line using spacejam:
+
+```bash
+# From the repo root
+bin/spacejam packages/*
+````
+
 ## Creating pull requests
+
