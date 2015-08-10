@@ -34,8 +34,6 @@ Also, all of the [meteor packages](packages) in this repo (json-pipes, endpoint-
 
 This is a list of issues, features and use cases I already gathered, please feel free to add your own by means of feature requests or creating a PR to update this section of the readme.
 
-- Fix mobile UX
-
 - Support organizations
 
 - Support private repos
