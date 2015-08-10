@@ -24,6 +24,24 @@ See [Developer's Guide](DevGuide.md).
 
 Also, all of the [meteor packages](packages) in this repo (json-pipes, endpoint-puller, etc.), will each get a repo of their own soon.
 
+### Comming soon / please contribute
+
+This is a list of issues, features and use cases I already gathered, please feel free to add your own by means of feature requests or creating a PR to update this section of the readme.
+
+- Fix mobile UX
+
+- Support organizations
+
+- Support private repos
+
+- Support selecting the organizations you want to generate an auto-response for.
+
+- Support selecting the repo(s) you want to generate an auto-response for.
+
+- Support no end dates, for a "this repo is abandoned" auto-response.
+
+- Support setting a specific auto-response text per repo.
+
 ### License
 
 For now, [GNU v2](LICENSE.md), but will probably change to MIT soon.
