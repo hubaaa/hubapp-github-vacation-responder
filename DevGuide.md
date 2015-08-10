@@ -133,7 +133,7 @@ For appName, specify the name of the github developer application you created.
 
 The [easy-service-config](packages/easy-service-config) meteor package included in this repo automatically loads all the [loginWith](http://docs.meteor.com/#/full/meteor_loginwithexternalservice) related service configurations it finds in the settings file under `serviceConfigurations` into meteor's `ServiceConfiguration.configurations` collection, so you won't have to configure your GitHub developer application in meteor manually on first time use.
 
-### Create your meteor runtime environment
+### Create your meteor runtime environment file
 
 meteor relies on environment variables such as ROOT_URL, MONGO_URL and EMAIL_URL for it's runtime environment. I recommend creating a file that exports those that you can "bash source" before running meteor. Here too, a sample is already provided, just copy it and modify it for your environment:
 
@@ -213,11 +213,11 @@ bin/spacejam packages/*
 
 Is a must. Pull requests will not be accepted without tests. Some guidelines:
 
-1. Make extensive use of [sinon.js](practicalmeteor:mocha) spies and stubs to make sure that each test tests the behavior of the code under test in complete isolation.
+- Make extensive use of [sinon.js](http://sinonjs.org/) spies and stubs to make sure that each test tests the behavior of the code under test in complete isolation.
 
-2. for the same reason, each test must create a new object per test.
+- For the same reason, each test must create a new object per test.
 
-3. beforeEach and afterEach should always restore all stubs and spies. My [sinon.js](practicalmeteor:mocha) meteor wrapper package includes spy and stub factories with restoreAll() support. See the test code in this repo's packages for example.
+- beforeEach and afterEach should always restore all stubs and spies. My [practicalmeteor:sinon](https://atmospherejs.com/practicalmeteor/sinon) meteor wrapper package includes spy and stub factories with restoreAll() support. See the test code in this repo's packages for example.
 
 ## Pull requests
 
