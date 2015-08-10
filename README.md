@@ -44,7 +44,7 @@ This is a list of issues, features and use cases I already gathered, please feel
 
 - Support no end dates, for a "this repo is abandoned" auto-response.
 
-- Support setting a specific auto-response text per repo.
+- Support specifying a different auto-response text per repo.
 
 ### License
 
