@@ -37,6 +37,7 @@ Package.onUse(function(api) {
     'ovcharik:alertifyjs@1.4.1',
     'rbabayoff:bootstrap-daterangepicker@2.0.6_1',
     'manuel:viewmodel@1.8.9',
+    'gadicohen:reactive-window@1.0.6',
     'json-pipes',
     'endpoint-puller',
     'bruz:github-api'
