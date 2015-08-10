@@ -3,6 +3,9 @@
     <div class="col-lg-3">
     </div>
     <div class="col-lg-6">
+      {{#if rwindow.innerWidth 'lt' 768}}
+        {{> disableAppToggle dataWidth="100%"}}
+      {{/if}}
       <form>
         <div class="form-group">
           <label for="vacationDates">Your vacation dates:</label>

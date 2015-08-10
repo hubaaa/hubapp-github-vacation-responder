@@ -217,7 +217,7 @@ Is a must. Pull requests will not be accepted without tests. Some guidelines:
 
 - For the same reason, each test must create a new object per test.
 
-- beforeEach and afterEach should always restore all stubs and spies. My [practicalmeteor:sinon](https://atmospherejs.com/practicalmeteor/sinon) meteor wrapper package includes spy and stub factories with restoreAll() support. See the test code in this repo's packages for example.
+- beforeEach and afterEach should always restore all stubs and spies. My [practicalmeteor:sinon](https://atmospherejs.com/practicalmeteor/sinon) meteor wrapper package includes spy and stub factories with restoreAll() support. See the test code in this repo's packages for examples.
 
 ## Pull requests
 
