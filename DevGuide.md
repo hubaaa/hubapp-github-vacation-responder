@@ -10,7 +10,7 @@ Since this app uses GitHub oauth authorization, you will need to:
 
 2. Use some kind of http tunneling solution to be able to expose your local app to the Internet so Sign-In with GitHub will work. This guide will provide you instructions on using [ngrok](https://ngrok.com/), but there are other [solutions](http://john-sheehan.com/blog/a-survey-of-the-localhost-proxying-landscape) out there.
 
-Also, if you're a team of developers (and as a rule of thumb in general), I recommend following the [The Twelve-Factor App](http://12factor.net/) principles religiosity in development environments too, so every developer has it's own completely separate environment, including separate domains, DBs, accounts, services, github developer apps, etc.
+Also, if you're a team of developers (and as a rule of thumb in general), I recommend following [The Twelve-Factor App](http://12factor.net/) principles religiosity in development environments too, so every developer has it's own completely separate environment, including separate domains, DBs, accounts, services, github developer apps, etc.
 
 ## Installation & Configuration
 
