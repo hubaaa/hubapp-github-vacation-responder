@@ -1,3 +1,6 @@
 #!/bin/bash -e
 
+source $METEOR_ENV_FILE
+
+# Executes spacejam's mtp
 mtp --driver-package=practicalmeteor:mocha@2.1.0_3 $@

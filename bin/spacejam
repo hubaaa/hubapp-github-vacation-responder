@@ -1,5 +1,6 @@
 #!/bin/bash -e
 
-export METEOR_TEST_PACKAGES="1"
+source $METEOR_ENV_FILE
 
-spacejam test-packages --driver-package=practicalmeteor:mocha-console-reporter --settings=settings.json $@
+# Executes spacejam's spacejam
+spacejam test-packages --driver-package=practicalmeteor:mocha-console-reporter --settings=$METEOR_SETTINGS_PATH $@
