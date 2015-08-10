@@ -2,7 +2,7 @@
 
 ## Hubaaa's GitHub Vacation Auto-Responder
 
-This is the first in a series of apps I'm creating that I hope will generate the code base for a meteor based open-source integration platform.
+This is the first in a series of apps I'm creating that I hope will generate the basis for a meteor based open-source integration platform.
 
 This app allows you to specify a "I'm on vacation" auto-comment for your **personal** public repos.
 
@@ -34,8 +34,6 @@ Also, all of the [meteor packages](packages) in this repo (json-pipes, endpoint-
 
 This is a list of issues, features and use cases I already gathered, please feel free to add your own by means of feature requests or creating a PR to update this section of the readme.
 
-- Fix mobile UX
-
 - Support organizations
 
 - Support private repos
@@ -46,7 +44,7 @@ This is a list of issues, features and use cases I already gathered, please feel
 
 - Support no end dates, for a "this repo is abandoned" auto-response.
 
-- Support setting a specific auto-response text per repo.
+- Support specifying a different auto-response text per repo.
 
 ### License
 
