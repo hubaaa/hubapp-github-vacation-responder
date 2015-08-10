@@ -60,7 +60,7 @@ Meteor.methods
   # @throwme for testing purposes
   'hubapp/disable': (disabled, throwme)->
     try
-      log.enter 'hubapp/disable', doc
+      log.enter 'hubapp/disable', arguments
       if throwme?
         throw new Meteor.Error throwme
       if not @userId?
