@@ -2,13 +2,13 @@
 
 ## Hubaaa's GitHub Vacation Auto-Responder
 
-Very much work in progress and test coverage is far from what it should be.
+This is the first in a series of apps I'm creating that I hope will generate the code base for a meteor based open-source integration platform.
 
-A meteor app that allows you to specify a "I'm on vacation" auto-comment for your **personal** public repos.
+This app allows you to specify a "I'm on vacation" auto-comment for your **personal** public repos.
 
 For every issue / pull request that will be created or commented on while you're on vacation, it will only auto-comment once.
 
-You can play with a live demo at (mobile UX still needs work):
+You can play with a live **demo** at:
 
 https://hubaaa-github-vacation-responder.meteor.com/
 
@@ -17,6 +17,12 @@ Note that if you create an issue in your own repo, you will NOT get a response. 
 Try it out in a personal [test repo](https://github.com/rbabayoff/github-app-test-repo) of mine - I'm always on vacation, apparently :-)
 
 Please do not create issues in **this** repo just to generate auto-responses.
+
+### Known Issues
+
+- Very much work in progress and test coverage is far from what it should be.
+
+- Since the demo runs on meteor's free infrastructure, app may be put in sleep mode and not respond while sleeping.
 
 ### Contributing
 
