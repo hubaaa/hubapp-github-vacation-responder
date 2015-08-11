@@ -2,7 +2,7 @@
 
 ## Hubaaa's GitHub Vacation Auto-Responder
 
-This is the first in a series of apps we're creating that I hope will generate the basis for a meteor based open-source integration platform.
+This is the first in a series of apps we're creating that we hope will generate the basis for a meteor based open-source integration platform.
 
 This app allows you to specify a "I'm on vacation" auto-comment for your **personal** public repos.
 
