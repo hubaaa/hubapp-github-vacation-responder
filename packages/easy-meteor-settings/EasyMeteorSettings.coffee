@@ -46,6 +46,8 @@ class hubaaa.EasyMeteorSettings
       value = @getSetting(name)
       if not value?
         throw new Meteor.Error 'missing-required-meteor-setting', "'#{name}' doesn't exist in Meteor.settings or Meteor.settings.public"
+
+      return value
     finally
       log.return()
 
@@ -55,6 +57,8 @@ class hubaaa.EasyMeteorSettings
       value = @getPrivateSetting(name)
       if not value?
         throw new Meteor.Error 'missing-required-meteor-setting', "'#{name}' doesn't exist in Meteor.settings"
+
+      return value
     finally
       log.return()
 
@@ -64,6 +68,8 @@ class hubaaa.EasyMeteorSettings
       value = @getPublicSetting(name)
       if not value?
         throw new Meteor.Error 'missing-required-meteor-setting', "'#{name}' doesn't exist in Meteor.settings.public"
+
+      return value
     finally
       log.return()
 
