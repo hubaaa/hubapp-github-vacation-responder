@@ -1,0 +1,12 @@
+[submodule "app/packages/endpoint-puller"]
+	path = app/packages/endpoint-puller
+	url = git@github.com:hubaaa/meteor-endpoint-puller.git
+[submodule "app/packages/json-pipes"]
+	path = app/packages/json-pipes
+	url = git@github.com:hubaaa/meteor-json-pipes.git
+[submodule "app/packages/easy-meteor-settings"]
+	path = app/packages/easy-meteor-settings
+	url = git@github.com:hubaaa/meteor-easy-meteor-settings.git
+[submodule "app/packages/easy-service-config"]
+	path = app/packages/easy-service-config
+	url = git@github.com:hubaaa/meteor-easy-service-config.git
