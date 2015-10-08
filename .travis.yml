@@ -7,6 +7,7 @@ node_js:
 
 before_install:
   - sed -i 's/git@github.com:/https:\/\/github.com\//' .gitmodules
+  - cat .gitmodules
   - git submodule update --init --recursive
   - "curl https://install.meteor.com | /bin/sh"
   - "npm install -g spacejam"
