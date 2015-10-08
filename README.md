@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/rbabayoff/hubaaa-github-vacation-responder.svg)](https://travis-ci.org/rbabayoff/hubaaa-github-vacation-responder)
+[![Build Status](https://travis-ci.org/hubaaa/hubapp-github-vacation-responder.svg)](https://travis-ci.org/hubaaa/hubapp-github-vacation-responder)
 
 ## Hubaaa's GitHub Vacation Auto-Responder
 
