@@ -28,7 +28,7 @@ Package.onUse(function(api) {
     'momentjs:moment',
     'practicalmeteor:loglevel@1.2.0_2',
     'practicalmeteor:chai@2.1.0_1',
-    'easy-meteor-settings',
+    'hubaaa:easy-meteor-settings',
     'practicalmeteor:underscore.string',
     'twbs:bootstrap',
     'ian:accounts-ui-bootstrap-3@1.2.76',
@@ -38,8 +38,8 @@ Package.onUse(function(api) {
     'rbabayoff:bootstrap-daterangepicker@2.0.6_1',
     'manuel:viewmodel@1.8.9',
     'gadicohen:reactive-window@1.0.6',
-    'json-pipes',
-    'endpoint-puller',
+    'hubaaa:json-pipes@0.1.1',
+    'hubaaa:endpoint-puller',
     'bruz:github-api'
   ]);
 
