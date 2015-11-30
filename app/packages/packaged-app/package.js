@@ -66,6 +66,8 @@ Package.onUse(function(api) {
     'src/client/lib/bootstrap-toggle-2.2.1.css',
     'src/client/lib/bootstrap-toggle-2.2.1.js'
   ], 'client');
+
+  api.addFiles('src/client/lib/ViewModel.coffee', 'client');
   api.addFiles('src/lib/namespace.coffee');
   api.addFiles('src/lib/SettingsSchema.coffee');
   api.addFiles('src/lib/SettingsModel.coffee');
