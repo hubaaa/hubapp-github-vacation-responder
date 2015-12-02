@@ -68,9 +68,15 @@ class hubaaa.UserSettingsForm
       log.enter 'onCreated'
       expect(Meteor.userId()).to.be.ok
 
+      # gets logedin user repo list
       Meteor.call 'hubapp/settings/repos', (err, result)=>
-        if result
-          @repos result
+        expect(result).to.be.an('array')
+
+        if err
+          log.error err
+          return
+
+        @repos result
 
       @settings(hubapp_user_settings.findOne _id: Meteor.userId())
 
