@@ -33,6 +33,11 @@ Meteor.startup ->
         type: Boolean
         optional: true
 
+      repo:
+        type: String
+        optional: true
+
+
     hubapp.SettingsSchema.messages
       "invalid-date-range": "End date must be after start date."
   finally

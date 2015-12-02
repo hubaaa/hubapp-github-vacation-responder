@@ -8,6 +8,14 @@
       {{/if}}
       <form>
         <div class="form-group">
+          <label for="">Select repo:</label>
+          <select id="repos" class="form-control"
+            data-bind="options: repos, value: selectedRepo, optionsValue: name, optionsText: name">
+            <option value="all">All</option>
+          </select>
+
+        </div>
+        <div class="form-group">
           <label for="vacationDates">Your vacation dates:</label>
           <input id="vacationDates" type="text" class="form-control" />
           <!--<input id="vacationDates" type="text" class="form-control pull-right" style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc; width: 100%" />-->

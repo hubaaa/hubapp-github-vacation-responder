@@ -134,6 +134,9 @@ class hubaaa.GitHubVacationResponder extends hubaaa.EndpointPuller
 
       return false if created_at.valueOf() < @appSettings.startDate.valueOf()
 
+      if @appSettings.repo? and @appSettings.repo isnt 'All'
+        return false if event.repo.name isnt "#{@username}/" + @appSettings.repo
+
       if event.type is "IssuesEvent"
         return false if event.payload.action not in ["opened", 'reopened']
         html_url = event.payload.issue.html_url

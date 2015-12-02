@@ -1,5 +1,9 @@
 log = new ObjectLogger('server.hubapp_user_settings', 'debug')
 
+github = hubaaa.GitHubApiClient.get()
+syncGetUserRepos = Meteor._wrapAsync github.getUserRepos, github
+
+
 # All of this generic settings model, view and publication will be wrapped in a easily configurable package
 Meteor.publish 'hubapp_user_settings', ->
   try
@@ -57,6 +61,25 @@ Meteor.methods
     finally
       log.return()
 
+
+  'hubapp/settings/repos': ->
+    try
+      log.enter 'hubapp/settings/repos'
+ 
+      if not @userId?
+        throw new Meteor.Error(
+          'not-signed-in',
+          'You need to be signed-in to disable or enable your app.'
+        )
+
+      user = Meteor.user()
+      return syncGetUserRepos user.services?.github?.username
+
+
+    finally
+      log.return()
+
+
   # @throwme for testing purposes
   'hubapp/disable': (disabled, throwme)->
     try
@@ -74,3 +97,5 @@ Meteor.methods
       return disabled
     finally
       log.return()
+
+

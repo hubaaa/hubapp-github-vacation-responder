@@ -2,6 +2,7 @@ log = new ObjectLogger 'Template.hubapp_user_settings_form', 'debug'
 
 class hubaaa.UserSettingsForm
 
+  repos: []
   settings: null
   startDate: null
   endDate: null
@@ -23,12 +24,24 @@ class hubaaa.UserSettingsForm
       log.return()
 
 
+  selectedRepo: ->
+    try
+      log.enter 'selectedRepo'
+      return @settings()?.repo
+    finally
+      log.return()
+
+
   save: (event)->
     try
       log.enter 'save', event
       event?.preventDefault()
       @saveButtonText('Saving...')
       settings = @toJS()
+
+      delete settings.repos
+      settings.repo = $('#repos').val()
+
       Meteor.call 'hubapp/settings/save', settings, (error, result)=>
         try
           log.enter 'saveCB', arguments
@@ -54,6 +67,10 @@ class hubaaa.UserSettingsForm
     try
       log.enter 'onCreated'
       expect(Meteor.userId()).to.be.ok
+
+      Meteor.call 'hubapp/settings/repos', (err, result)=>
+        if result
+          @repos result
 
       @settings(hubapp_user_settings.findOne _id: Meteor.userId())
 
@@ -98,7 +115,11 @@ class hubaaa.UserSettingsForm
     finally
       log.return()
 
-Template.hubapp_user_settings_form.ViewModel(hubaaa.UserSettingsForm, "appSettingsViewModel")
+
+Template.hubapp_user_settings_form.ViewModel(
+  hubaaa.UserSettingsForm,
+  "appSettingsViewModel"
+)
 
 Meteor.startup ->
   alertify.defaults.notifier.position = 'top-right'
