@@ -3,4 +3,4 @@
 source $METEOR_ENV_FILE
 
 # Executes spacejam's spacejam
-spacejam test-packages --driver-package=practicalmeteor:mocha-console-reporter --settings=$METEOR_SETTINGS_PATH $@
+spacejam test-packages --driver-package=practicalmeteor:mocha-console-runner --settings=$METEOR_SETTINGS_PATH $@
