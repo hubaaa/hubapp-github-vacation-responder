@@ -15,7 +15,7 @@ Package.onUse(function(api) {
 
   api.use([
     'meteor-platform',
-    'less',
+    'less@1.0.14',
     'underscore',
     'coffeescript',
     'http',
